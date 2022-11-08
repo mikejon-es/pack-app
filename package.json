@@ -14,12 +14,18 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@babel/runtime": "^7.20.1",
     "@mdx-js/react": "^2.1.5",
+    "babel-runtime": "^6.26.0",
     "gatsby": "^4.24.7",
+    "gatsby-plugin-google-sheets": "^1.0.0",
+    "gatsby-plugin-image": "^2.24.0",
     "gatsby-plugin-manifest": "^4.24.0",
     "gatsby-plugin-mdx": "^4.3.0",
+    "gatsby-plugin-sharp": "^4.24.0",
     "gatsby-plugin-sitemap": "^5.24.0",
     "gatsby-source-filesystem": "^4.24.0",
+    "gatsby-source-google-spreadsheet": "github:sondrele/gatsby-source-google-spreadsheet",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   }
