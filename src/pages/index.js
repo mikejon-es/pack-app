@@ -4,16 +4,31 @@ import { graphql } from "gatsby"
 const IndexPage = ({ data }) => {
   const links = data.allPackLink.edges
   const [devicePlatform, setDevicePlatform] = useState("")
+  const [showInstallTip, setShowInstallTip] = useState(false)
 
-  // Simple user-agent sniffer to show custom platform install instructions
   useEffect(() => {
+    // 1. Detect the user's phone platform
     const userAgent = window.navigator.userAgent.toLowerCase()
     if (/iphone|ipad|ipod/.test(userAgent)) {
       setDevicePlatform("ios")
     } else if (/android/.test(userAgent)) {
       setDevicePlatform("android")
     }
+
+    // 2. Check if they've already dismissed the shortcut banner in the past
+    const isDismissed = localStorage.getItem("pack121_install_dismissed")
+    if (!isDismissed) {
+      setShowInstallTip(true)
+    }
   }, [])
+
+  // Function to permanently hide the shortcut tip on this device
+  const dismissTip = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+    localStorage.setItem("pack121_install_dismissed", "true")
+    setShowInstallTip(false)
+  }
 
   return (
     <div style={{
@@ -24,7 +39,7 @@ const IndexPage = ({ data }) => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "24px 16px 120px 16px" // Extra bottom padding so layout doesn't clip behind install prompt
+      padding: "24px 16px 40px 16px"
     }}>
       
       {/* Mobile-Friendly App Header */}
@@ -81,47 +96,72 @@ const IndexPage = ({ data }) => {
             </div>
           </a>
         ))}
+
+        {/* DASHBOARD-STYLED SHORTCUT BANNER 
+          It renders inline at the bottom of the list, perfectly matching the design language.
+        */}
+        {showInstallTip && (
+          <div style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "rgba(255, 255, 255, 0.05)", // Matching button background
+            border: "1px dashed #F2A900", // Dashed gold to indicate a "utility" block
+            borderRadius: "16px",
+            padding: "20px 16px 16px 16px",
+            marginTop: "32px", // Distinct spacing from the main links
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+          }}>
+            {/* Close / Dismiss Button */}
+            <button 
+              onClick={dismissTip}
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "12px",
+                background: "none",
+                border: "none",
+                color: "#FFFFFF",
+                fontSize: "16px",
+                cursor: "pointer",
+                opacity: 0.4,
+                padding: "4px"
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.opacity = 1}
+              onMouseLeave={(e) => e.currentTarget.style.opacity = 0.4}
+            >
+              ✕
+            </button>
+
+            <div style={{ fontWeight: "700", fontSize: "15px", marginBottom: "8px", color: "#F2A900" }}>
+              📱 Add App Shortcut to Home Screen
+            </div>
+            
+            {devicePlatform === "ios" && (
+              <div style={{ fontSize: "13px", opacity: 0.8, lineHeight: "1.5" }}>
+                Tap the <span style={{ fontWeight: "700" }}>Share button</span> (square with an up arrow) at the bottom of Safari, then select <span style={{ fontWeight: "700", color: "#F2A900" }}>"Add to Home Screen"</span>.
+              </div>
+            )}
+
+            {devicePlatform === "android" && (
+              <div style={{ fontSize: "13px", opacity: 0.8, lineHeight: "1.5" }}>
+                Tap the <span style={{ fontWeight: "700" }}>Menu button</span> (three vertical dots) in the top right of Chrome, then select <span style={{ fontWeight: "700", color: "#F2A900" }}>"Add to Home Screen"</span>.
+              </div>
+            )}
+
+            {!devicePlatform && (
+              <div style={{ fontSize: "13px", opacity: 0.8, lineHeight: "1.5" }}>
+                Open this URL in your phone's native web browser, then use your browser menu tools to save it directly as an application shortcut.
+              </div>
+            )}
+          </div>
+        )}
       </main>
 
-      {/* Floating Smart App Setup Banner */}
-      <div style={{
-        position: "fixed",
-        bottom: "20px",
-        width: "90%",
-        maxWidth: "400px",
-        backgroundColor: "#F2A900", // Pack Gold Banner
-        color: "#0C2340", // High contrast dark text
-        borderRadius: "16px",
-        padding: "14px 20px",
-        boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-        zIndex: 1000
-      }}>
-        <div style={{ fontWeight: "700", fontSize: "14px", marginBottom: "4px" }}>
-          📱 Add to Home Screen for Quick Access
-        </div>
-        
-        {devicePlatform === "ios" && (
-          <div style={{ fontSize: "12px", opacity: 0.9 }}>
-            Tap the <span style={{ fontWeight: "800" }}>Share button</span> (square with arrow up) at the bottom of Safari, then select <span style={{ fontWeight: "800" }}>"Add to Home Screen"</span>.
-          </div>
-        )}
-
-        {devicePlatform === "android" && (
-          <div style={{ fontSize: "12px", opacity: 0.9 }}>
-            Tap the <span style={{ fontWeight: "800" }}>Menu button</span> (three dots) in the top right of Chrome, then select <span style={{ fontWeight: "800" }}>"Add to Home Screen"</span>.
-          </div>
-        )}
-
-        {!devicePlatform && (
-          <div style={{ fontSize: "12px", opacity: 0.9 }}>
-            Open this link in your phone's browser and use your browser menu option to save it directly as an app shortcut.
-          </div>
-        )}
-      </div>
+      {/* Footer Utility */}
+      <footer style={{ marginTop: "40px", fontSize: "11px", opacity: 0.3 }}>
+        Pack 121 Hub v1.1
+      </footer>
     </div>
   )
 }
