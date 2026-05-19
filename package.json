@@ -1,8 +1,8 @@
 {
-  "name": "mrj-parks",
+  "name": "pack-app",
   "version": "1.0.0",
   "private": true,
-  "description": "mrj-parks",
+  "description": "pack app",
   "keywords": [
     "gatsby"
   ],
@@ -15,17 +15,21 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.20.1",
-    "@mdx-js/react": "^2.1.5",
+    "@mdx-js/react": "^2.3.0",
     "babel-runtime": "^6.26.0",
-    "gatsby": "^4.24.7",
+    "csv-parse": "^6.2.1",
+    "date-fns": "^4.2.1",
+    "gatsby": "^5.16.1",
     "gatsby-plugin-google-sheets": "^1.0.0",
-    "gatsby-plugin-image": "^2.24.0",
-    "gatsby-plugin-manifest": "^4.24.0",
-    "gatsby-plugin-mdx": "^4.3.0",
-    "gatsby-plugin-sharp": "^4.24.0",
-    "gatsby-plugin-sitemap": "^5.24.0",
-    "gatsby-source-filesystem": "^4.24.0",
-    "gatsby-source-google-spreadsheet": "github:sondrele/gatsby-source-google-spreadsheet",
+    "gatsby-plugin-image": "^3.16.0",
+    "gatsby-plugin-manifest": "^5.16.0",
+    "gatsby-plugin-mdx": "^5.16.0",
+    "gatsby-plugin-sharp": "^5.16.0",
+    "gatsby-plugin-sitemap": "^6.16.0",
+    "gatsby-source-filesystem": "^5.16.0",
+    "gatsby-source-google-spreadsheets": "^3.0.9",
+    "ical.js": "^2.2.1",
+    "node-fetch": "^3.3.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   }
