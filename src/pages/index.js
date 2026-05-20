@@ -39,7 +39,13 @@ const IndexPage = ({ data }) => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      padding: "24px 16px 40px 16px"
+      padding: "24px 16px 40px 16px",
+
+      // ADJUSTED PADDING FOR IOS SAFE AREAS:
+      paddingTop: "calc(24px + env(safe-area-inset-top))",
+      paddingBottom: "calc(40px + env(safe-area-inset-bottom))",
+      paddingLeft: "calc(16px + env(safe-area-inset-left))",
+      paddingRight: "calc(16px + env(safe-area-inset-right))"
     }}>
       
       {/* Mobile-Friendly App Header */}

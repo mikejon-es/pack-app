@@ -17,7 +17,12 @@ const CalendarPage = ({ data }) => {
       padding: "24px 16px",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center"
+      alignItems: "center",
+      // ADJUSTED PADDING FOR IOS SAFE AREAS:
+      paddingTop: "calc(24px + env(safe-area-inset-top))",
+      paddingBottom: "calc(40px + env(safe-area-inset-bottom))",
+      paddingLeft: "calc(16px + env(safe-area-inset-left))",
+      paddingRight: "calc(16px + env(safe-area-inset-right))"
     }}>
       
       {/* Back to Hub Nav */}
