@@ -110,6 +110,17 @@ const CalendarPage = ({ data }) => {
   )
 }
 
+export const Head = () => (
+  <>
+    <title>Pack 121 Calendar</title>
+    <html lang="en" style={{ backgroundColor: "#0C2340" }} />
+    <body style={{ backgroundColor: "#0C2340", margin: 0, padding: 0 }} />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  </>
+)
 // Map GraphQL schema elements directly from our new custom PackEvent node
 export const query = graphql`
   query {

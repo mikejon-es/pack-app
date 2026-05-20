@@ -7,7 +7,15 @@ module.exports = {
     "gatsby-plugin-sitemap", 
     {
       resolve: 'gatsby-plugin-manifest',
-      options: { "icon": "src/images/icon.png" }
+      options: {
+          "icon": "src/images/icon.png",
+          "name": "Pack 121 Hub",
+          "short_name": "Pack 121",
+          "start_url": "/",
+          "background_color": "#0C2340", // Ensures background loads blue instantly
+          "theme_color": "#0C2340",      // Colors the iOS status bar (clock/battery area) blue
+          "display": "standalone",
+  }
     },
     "gatsby-plugin-mdx", 
     {
