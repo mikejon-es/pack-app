@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 import { format, parseISO } from "date-fns"
+import BuildFooter from "../components/build-footer"
 
 const CalendarPage = ({ data }) => {
   // Sort events chronologically by start date
@@ -112,6 +113,8 @@ const CalendarPage = ({ data }) => {
           })
         )}
       </main>
+
+      <BuildFooter />
     </div>
   )
 }

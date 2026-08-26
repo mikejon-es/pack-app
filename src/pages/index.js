@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
+import BuildFooter from "../components/build-footer"
 
 const IndexPage = ({ data }) => {
   const links = data.allPackLink.edges
@@ -165,9 +166,7 @@ const IndexPage = ({ data }) => {
       </main>
 
       {/* Footer Utility */}
-      <footer style={{ marginTop: "40px", fontSize: "11px", opacity: 0.3 }}>
-        Pack 121 Hub v1.2
-      </footer>
+      <BuildFooter />
     </div>
   )
 }

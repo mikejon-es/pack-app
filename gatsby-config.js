@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Pack 121`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://www.yourdomain.tld`,
+    buildTime: new Date().toISOString()
   },
   plugins: [
     "gatsby-plugin-sitemap", 

@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
+import BuildFooter from "../components/build-footer"
 
 const NewScoutChecklistPage = ({ data }) => {
   const links = data.allChecklistLink.edges
@@ -83,6 +84,8 @@ const NewScoutChecklistPage = ({ data }) => {
           ))
         )}
       </main>
+
+      <BuildFooter />
     </div>
   )
 }
