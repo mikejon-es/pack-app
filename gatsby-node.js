@@ -13,6 +13,13 @@ exports.createSchemaCustomization = ({ actions }) => {
       linkurl: String
       imageurl: String
     }
+    type ChecklistLink implements Node {
+      title: String
+      description: String
+      category: String
+      linkurl: String
+      imageurl: String
+    }
   `;
   createTypes(typeDefs);
 };
@@ -65,7 +72,49 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
   }
 
   // ==========================================
-  // 2. ICS CALENDAR FETCH CODE 
+  // 2. NEW SCOUT CHECKLIST SHEET FETCH CODE
+  // ==========================================
+  const checklistCsvUrl = "https://docs.google.com/spreadsheets/d/1lDdUvKYQ4SXJ2it3R7N6BK-4cAmqubiug5twFm_aqN8/export?format=csv&gid=2088720564";
+  try {
+    const response = await fetch(checklistCsvUrl);
+    const text = await response.text();
+
+    const records = parse(text, {
+      columns: ['title', 'description', 'category', 'linkurl', 'imageurl'],
+      from_line: 2,
+      skip_empty_lines: true,
+      trim: true,
+      relax_column_count: true
+    });
+
+    records.forEach((row, i) => {
+      const cleanRow = {
+        title: row.title || "",
+        description: row.description || "",
+        category: row.category || "",
+        linkurl: row.linkurl || "",
+        imageurl: row.imageurl || ""
+      };
+
+      const nodeMeta = {
+        id: createNodeId(`checklist-link-${i}`),
+        parent: null,
+        children: [],
+        internal: {
+          type: `ChecklistLink`,
+          contentDigest: createContentDigest(cleanRow),
+        },
+      };
+      createNode({ ...cleanRow, ...nodeMeta });
+    });
+
+    console.log(`Successfully mapped ${records.length} new scout checklist rows.`);
+  } catch (error) {
+    console.error("Failed fetching new scout checklist sheet:", error);
+  }
+
+  // ==========================================
+  // 3. ICS CALENDAR FETCH CODE
   // ==========================================
   const icsUrl = "https://api.scouting.org/advancements/events/calendar/65676"; 
   try {

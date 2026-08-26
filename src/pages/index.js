@@ -166,7 +166,7 @@ const IndexPage = ({ data }) => {
 
       {/* Footer Utility */}
       <footer style={{ marginTop: "40px", fontSize: "11px", opacity: 0.3 }}>
-        Pack 121 Hub v1.1
+        Pack 121 Hub v1.2
       </footer>
     </div>
   )

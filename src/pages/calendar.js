@@ -36,7 +36,13 @@ const CalendarPage = ({ data }) => {
         <h1 style={{ fontSize: "26px", fontWeight: "800", color: "#F2A900", margin: "0 0 4px 0" }}>
           Upcoming Events
         </h1>
-        <p style={{ fontSize: "13px", opacity: 0.7, margin: 0 }}>Pack 121 Live Schedule</p>
+        <p style={{ fontSize: "13px", opacity: 0.7, margin: "0 0 8px 0" }}>Pack 121 Live Schedule</p>
+        <a
+          href="https://api.scouting.org/advancements/events/calendar/65676"
+          style={{ fontSize: "12px", color: "#F2A900", opacity: 0.9, fontWeight: "600", textDecoration: "underline" }}
+        >
+          Subscribe to Calendar Feed
+        </a>
       </header>
 
       <main style={{ width: "100%", maxWidth: "420px" }}>
