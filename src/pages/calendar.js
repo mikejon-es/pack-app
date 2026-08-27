@@ -47,8 +47,14 @@ const CalendarPage = ({ data }) => {
           </a>
           <a
             href="/calendar-2026-2027.html"
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault()
+              window.open(
+                "/calendar-2026-2027.html",
+                "printableCalendar",
+                "noopener,noreferrer,width=900,height=1100"
+              )
+            }}
             style={{ fontSize: "12px", color: "#F2A900", opacity: 0.9, fontWeight: "600", textDecoration: "underline" }}
           >
             Printable Calendar
