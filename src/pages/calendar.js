@@ -53,6 +53,14 @@ const CalendarPage = ({ data }) => {
           >
             Printable Calendar
           </a>
+          <a
+            href="/sup-calendar-2026-2027.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontSize: "12px", color: "#F2A900", opacity: 0.9, fontWeight: "600", textDecoration: "underline" }}
+          >
+            Additional Scouting Events
+          </a>
         </div>
       </header>
 
