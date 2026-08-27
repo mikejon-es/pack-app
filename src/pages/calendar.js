@@ -38,12 +38,22 @@ const CalendarPage = ({ data }) => {
           Upcoming Events
         </h1>
         <p style={{ fontSize: "13px", opacity: 0.7, margin: "0 0 8px 0" }}>Pack 121 Live Schedule</p>
-        <a
-          href="https://api.scouting.org/advancements/events/calendar/65676"
-          style={{ fontSize: "12px", color: "#F2A900", opacity: 0.9, fontWeight: "600", textDecoration: "underline" }}
-        >
-          Subscribe to Calendar Feed
-        </a>
+        <div style={{ display: "flex", justifyContent: "center", gap: "12px", flexWrap: "wrap" }}>
+          <a
+            href="https://api.scouting.org/advancements/events/calendar/65676"
+            style={{ fontSize: "12px", color: "#F2A900", opacity: 0.9, fontWeight: "600", textDecoration: "underline" }}
+          >
+            Subscribe to Calendar Feed
+          </a>
+          <a
+            href="/calendar-2026-2027.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontSize: "12px", color: "#F2A900", opacity: 0.9, fontWeight: "600", textDecoration: "underline" }}
+          >
+            Printable Calendar
+          </a>
+        </div>
       </header>
 
       <main style={{ width: "100%", maxWidth: "420px" }}>
